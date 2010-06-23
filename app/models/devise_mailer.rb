@@ -1,4 +1,4 @@
-class DeviseMailer < ::ActionMailer::Base
+class DeviseMailer < BaseMailer
   extend Devise::Controllers::InternalHelpers::ScopedViews
 
   # Deliver confirmation instructions when the user is created or its email is
