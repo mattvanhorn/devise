@@ -13,7 +13,6 @@ class DeviseMailer < BaseMailer
 
   # Deliver reset password instructions when manually requested
   def reset_password_instructions(record)
-    raise 'hell'
     setup_mail(record, :reset_password_instructions)
   end
 
