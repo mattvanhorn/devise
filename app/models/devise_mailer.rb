@@ -1,6 +1,10 @@
 class DeviseMailer < BaseMailer
   extend Devise::Controllers::InternalHelpers::ScopedViews
 
+  def self.perform(cmd, *args)
+    send(cmd, *args)
+  end
+
   # Deliver confirmation instructions when the user is created or its email is
   # updated, and also when confirmation is manually requested
   def confirmation_instructions(record)
