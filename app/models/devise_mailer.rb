@@ -14,7 +14,7 @@ class DeviseMailer < BaseMailer
   # Deliver reset password instructions when manually requested
   def mimi_reset_password_instructions(record_type, record_id)
     record = record_type.constantize.find(record_id)
-    promotion :reset_password_instructions
+    promotion :password_reset_instructions
     setup_mail(record, :reset_password_instructions)
   end
 
@@ -32,6 +32,7 @@ class DeviseMailer < BaseMailer
       subject      translate(mapping, key)
       from         mailer_sender(mapping)
       recipients   record.email
+      body :edit_password_reset_url => edit_password_url(record, :reset_password_token => record.reset_password_token), :user_name => record.first_name
       # sent_on      Time.now
       # content_type Devise.mailer_content_type
       # body         render_with_scope(key, mapping, mapping.name => record, :resource => record)
