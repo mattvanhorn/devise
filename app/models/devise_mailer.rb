@@ -12,7 +12,8 @@ class DeviseMailer < BaseMailer
   end
 
   # Deliver reset password instructions when manually requested
-  def reset_password_instructions(record)
+  def reset_password_instructions(record_type, record_id)
+    record = record_type.constantize.find(record_id)
     setup_mail(record, :reset_password_instructions)
   end
 
