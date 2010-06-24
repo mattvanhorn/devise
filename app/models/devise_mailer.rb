@@ -32,7 +32,7 @@ class DeviseMailer < BaseMailer
       subject      translate(mapping, key)
       from         mailer_sender(mapping)
       recipients   record.email
-      body  :edit_password_reset_url => render_with_scope(key, mapping, mapping.name => record, :resource => record), 
+      body  :edit_password_reset_url => "http://www.scoopst.com/user/password/edit?reset_password_token=#{record.reset_password_token}", 
             :user_name => record.first_name
       # sent_on      Time.now
       # content_type Devise.mailer_content_type
