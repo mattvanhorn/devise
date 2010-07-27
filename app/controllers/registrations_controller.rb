@@ -19,6 +19,8 @@ class RegistrationsController < ApplicationController
     else
       render_with_scope :new
     end
+    
+    after_sign_up_hook(resource)
   end
 
   # GET /resource/edit
