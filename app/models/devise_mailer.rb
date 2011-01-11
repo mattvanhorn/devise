@@ -12,9 +12,9 @@ class DeviseMailer < BaseMailer
   end
 
   # Deliver reset password instructions when manually requested
-  def mimi_reset_password_instructions(record_type, record_id)
+  def reset_password_instructions(record_type, record_id)
     record = record_type.constantize.find(record_id)
-    promotion :password_reset_instructions
+    promotion :password_reset_instructions if Rails.env == "production"
     setup_mail(record, :reset_password_instructions)
   end
 
