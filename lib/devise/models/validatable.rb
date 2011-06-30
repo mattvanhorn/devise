@@ -15,9 +15,9 @@ module Devise
 
         base.class_eval do
           with_options :if => :email_required? do |v|
-            validates_presence_of   :email
-            validates_uniqueness_of :email, :scope => authentication_keys[1..-1], :allow_blank => true
-            validates_format_of     :email, :with  => EMAIL_REGEX, :allow_blank => true
+            v.validates_presence_of   :email
+            v.validates_uniqueness_of :email, :scope => authentication_keys[1..-1], :allow_blank => true
+            v.validates_format_of     :email, :with  => EMAIL_REGEX, :allow_blank => true
           end
 
           with_options :if => :password_required? do |v|
