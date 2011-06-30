@@ -15,9 +15,11 @@ module Devise
         assert_validations_api!(base)
 
         base.class_eval do
-          validates_presence_of   :email
-          validates_uniqueness_of :email, :scope => authentication_keys[1..-1], :allow_blank => true
-          validates_format_of     :email, :with  => email_regexp, :allow_blank => true
+          with_options :if => :email_required? do |v|
+            validates_presence_of   :email
+            validates_uniqueness_of :email, :scope => authentication_keys[1..-1], :allow_blank => true
+            validates_format_of     :email, :with  => email_regexp, :allow_blank => true
+          end
 
           with_options :if => :password_required? do |v|
             v.validates_presence_of     :password
